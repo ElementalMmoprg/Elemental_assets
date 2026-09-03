@@ -1,0 +1,6 @@
+Hello, thank you for purchasing this tileset.
+
+For the animated sea, the good animation is to use the tile in this order
+1 > 2 > 3 > 2 in loop
+
+Each frame is set on 0.4 secondes
