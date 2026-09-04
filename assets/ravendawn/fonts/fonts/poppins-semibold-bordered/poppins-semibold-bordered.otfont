@@ -1,0 +1,19 @@
+fonts
+  poppins-semibold-bordered-12
+    texture: poppins-semibold-12
+    auto-sizing: true
+    auto-sizing-multiplier: 1.5
+    font-size: 12
+    spacing: -1 0
+  poppins-semibold-bordered-14
+    texture: poppins-semibold-14
+    auto-sizing: true
+    auto-sizing-multiplier: 1.5
+    font-size: 14
+    spacing: -1 0
+  poppins-semibold-bordered-16
+    texture: poppins-semibold-16
+    auto-sizing: true
+    auto-sizing-multiplier: 1.5
+    font-size: 16
+    spacing: -1 0

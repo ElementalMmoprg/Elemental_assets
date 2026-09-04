@@ -1,0 +1,51 @@
+SpeechBubble < UISpeechBubble
+  id: speechBubble
+  text-hidden: true
+  phantom: true
+  font: terminus-14px-bold-bordered
+  text-offset: 0 -2
+  text-auto-resize: true
+  SpeechBubbleBackground
+  SpeechBubbleText
+  SpeechBubbleTriangle
+
+SpeechBubbleBackground < UIWidget
+  id: background
+  image-source: /images/ui/windows/speech_bubble/background
+  image-border: 5
+  anchors.fill: text
+  phantom: true
+
+SpeechBubbleText < UIWidget
+  id: text
+  anchors.fill: parent
+  font: terminus-14px-bold-bordered
+  text-offset: 0 -2
+  padding: 5
+  text-auto-resize: true
+  phantom: true
+  text-color: #cac2b4
+  @onTextChange: |
+    addEvent(function()
+      if self:getWidth() > 200 then
+        self:setSize({width = 200, height = self:getHeight()})
+        self:setTextWrap(true)
+      elseif self:getWidth() < 50 then
+        self:setSize({width = 50, height = self:getHeight()})
+      end
+
+      local parent = self:getParent()
+      if not parent then
+        return
+      end
+
+      parent:setSize({width = self:getWidth() + (self:getTextWrap() and 20 or 10), height = self:getHeight() + 10})
+    end)
+
+SpeechBubbleTriangle < UIWidget
+  id: triangle
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.top: parent.bottom
+  image-offset: 0 1
+  image-source: /images/ui/windows/speech_bubble/triangle
+  phantom: true

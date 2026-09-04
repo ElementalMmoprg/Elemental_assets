@@ -1,0 +1,75 @@
+SettingsSliderBackground < UIWidget
+  id: sliderBackground
+  height: 10
+  focusable: false
+  phantom: true
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.verticalCenter: parent.verticalCenter
+  image-border-left: 5
+  image-border-right: 5
+  image-source: /images/ui/windows/settings/BgSlider
+
+SettingsSliderHorizontal < UIButton
+  id: sliderButton
+  focusable: false
+  phantom: true
+  anchors.left: parent.left
+  anchors.verticalCenter: parent.verticalCenter
+  height: 10
+  image-border-left: 5
+  image-border-right: 5
+  image-source: /images/ui/windows/settings/BgSliderActive
+  opacity: 1
+
+SettingsSliderCursor < UIButton
+  id: sliderCursor
+  size: 22 22
+  focusable: false
+  phantom: true
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.left: parent.left
+  image-source: /images/ui/windows/settings/CursorSlider
+
+SettingsSliderValueLabel < Label
+  id: valueLabel
+  height: 30
+  width: 85
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.left: parent.right
+  font: poppins-14
+  text-color: #36F991
+  text-align: left
+  text-offset: 10 6
+
+SettingsSlider < UISettingSlider
+  id: slider
+  orientation: horizontal
+  height: 22
+  pixels-scroll: true
+  SettingsSliderBackground
+  SettingsSliderHorizontal
+  SettingsSliderCursor
+  SettingsSliderValueLabel
+  show-value: true
+  minimum: 0
+  maximum: 100
+    
+SettingsSliderOption < UIWidget
+  height: 40
+  Label
+    id: description
+    text: description
+    font: poppins-14
+    text-color: #A6AAB2
+    width: 200
+    anchors.left: parent.left
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    text-align: left
+    text-offset: 5 3
+  SettingsSlider
+    id: slider
+    anchors.verticalCenter: prev.verticalCenter
+    anchors.left: prev.right
+    width: 200

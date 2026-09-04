@@ -1,0 +1,29 @@
+MessageBoxConfirmCheckBox < UIWidget
+  id: confirmPanel
+  height: 16
+  width: 245
+
+  CheckBoxSmall
+    id: checkBox
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-top: 1
+    checked: false
+
+  UIWidget
+    id: description
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    text-align: center
+    text-auto-resize: true
+    text-offset: 20 4
+    text-color: #CED2D9
+    font: poppins-14
+    opacity: 1.0
+    @onClick: |
+      local checkBox = self:getParent().checkBox
+      checkBox:setChecked(not checkBox:isChecked())
+    @onGeometryChange: |
+      function(self, oldRect, newRect)
+        self:getParent():setWidth(self:getWidth())
+      end

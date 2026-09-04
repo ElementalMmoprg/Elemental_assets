@@ -1,0 +1,11 @@
+HorizontalSeparator < UIWidget
+  size: 307 1
+  phantom: true
+  focusable: false
+  background-color: #3A3D43
+
+VerticalSeparator < UIWidget
+  size: 1 307
+  phantom: true
+  focusable: false
+  image-source: /images/ui/windows/settings/edgeVertical

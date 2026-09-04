@@ -1,0 +1,105 @@
+DragItem < UIItem
+  padding: 2
+  UIWidget
+    id: hover
+    anchors.fill: parent
+    phantom: true
+    on: false
+    image-source: /images/ui/items/hover
+    $!on:
+      visible: false
+    $on:
+      visible: true
+
+Item < UIItem
+  size: 64 64
+  padding: 2
+  color: white
+  &hasBorder: true
+  &hasOverlay: true
+  &hasFrame: true
+  &hasHover: false
+  &hasProfessionIcon: true
+  image-source: /images/ui/items/background
+  $disabled:
+    color: #646464
+  @onGeometryChange: |
+    if not self.hover then
+      return
+    end
+
+    self.hover:setSize(self:getSize())
+  UIWidget
+    id: outline
+    anchors.fill: parent
+    phantom: true
+    on: false
+    image-color: alpha
+    image-source: /images/ui/items/outline
+    $!on:
+      visible: false
+    $on:
+      visible: true
+
+  UIWidget
+    id: fishingProfessionIcon
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 2
+    margin-left: 2
+    size: 20 20
+    image-source: /images/ui/icons/fishing_bait_icon
+    visible: false
+    phantom: true
+
+  UIWidget
+    id: soulboundIcon
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: -1
+    margin-left: -1
+    size: 20 20
+    image-source: /images/ui/items/soulbound
+    visible: false
+    phantom: true
+
+  UIWidget
+    id: expirationTime
+    anchors.top: parent.top
+    anchors.right: parent.right
+    text-auto-resize: true
+    visible: false
+    phantom: true
+    font: poppins-bold-bordered-14
+
+  UIWidget
+    id: hover
+    size: 64 64
+    anchors.centerIn: parent
+    phantom: true
+    on: false
+    image-source: /images/ui/items/hover
+    $!on:
+      visible: false
+    $on:
+      visible: true
+
+  UIWidget
+    id: frame
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    //margin-top: -2
+    phantom: true
+    visible: false
+    image-auto-resize: true
+    $on:
+      visible: true
+    @onStateChange: |
+      if self:isOn() then
+        addEvent(function()
+          local parent = self:getParent()
+          if parent and parent:getWidth() <= self:getWidth() then
+            self:setOn(false)
+          end
+        end)
+      end

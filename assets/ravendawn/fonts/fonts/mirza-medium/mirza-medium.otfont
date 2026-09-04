@@ -1,0 +1,13 @@
+fonts
+  mirza-medium-16
+    texture: mirza-medium-16
+    auto-sizing: true
+    auto-sizing-multiplier: 1.5
+    font-size: 16
+    height: 14
+  mirza-medium-30
+    texture: mirza-medium-30
+    auto-sizing: true
+    auto-sizing-multiplier: 1.5
+    font-size: 30
+    height: 25

@@ -1,0 +1,22 @@
+
+TextEdit < UITextEdit
+  size: 250 45
+  padding-top: 7
+  padding-left: 10
+  padding-right: 10
+  text-align: left
+  text-offset: 0 12
+
+  opacity: 1
+  selection-color: #272727
+  selection-background-color: #cccccc
+  font: myriad-pro-24
+  $disabled:
+    color: #27272788
+    opacity: 0.5
+
+PasswordTextEdit < TextEdit
+  text-hidden: true
+
+MultilineTextEdit < TextEdit
+  multiline: true

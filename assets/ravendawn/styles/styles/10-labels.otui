@@ -1,0 +1,16 @@
+Label < UILabel
+  color: white
+  font: myriad-pro-24
+  linethrough: false
+
+  HorizontalSeparator
+    id: linethrough
+    visible: false
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    anchors.right: parent.right
+
+BigLabel < UILabel
+  text-auto-resize: true
+  text-align: center
+  font: poppins-30

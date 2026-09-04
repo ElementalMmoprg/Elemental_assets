@@ -1,0 +1,75 @@
+ScrollBarValueLabel < Label
+  id: valueLabel
+  anchors.fill: parent
+  color: white
+  text-align: center
+
+ScrollBarBackgroundVertical < UIWidget
+  id: background
+  anchors.fill: parent
+  image-border-top: 4
+  image-border-bottom: 4
+  image-source: /images/ui/bars/scrollbar_background
+  margin-top: -1
+  margin-bottom: -1
+
+ScrollBarSliderVertical < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  size: 6 112
+  image-border-top: 4
+  image-border-bottom: 4
+  image-source: /images/ui/bars/scrollbar
+  opacity: 1.0
+  $hover:
+    opacity: 0.8
+  $pressed:
+    opacity: 0.9
+
+VerticalScrollBar < UIScrollBar
+  orientation: vertical
+  width: 8
+  height: 32
+  pixels-scroll: true
+  ScrollBarBackgroundVertical
+  ScrollBarSliderVertical
+  ScrollBarValueLabel
+
+ScrollBarBackgroundHorizontal < UIWidget
+  id: background
+  anchors.fill: parent
+  image-border-left: 4
+  image-border-right: 4
+  image-source: /images/ui/bars/scrollbar_horizontal_background
+  margin-left: -1
+  margin-right: -1
+
+ScrollBarSliderHorizontal < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  size: 112 6
+  image-border-left: 5
+  image-border-right: 5
+  image-source: /images/ui/bars/scrollbar_horizontal
+  opacity: 1
+  $hover:
+    opacity: 0.8
+  $pressed:
+    opacity: 0.9
+
+HorizontalScrollBar < UIScrollBar
+  orientation: horizontal
+  width: 33
+  height: 8
+  pixels-scroll: true
+  ScrollBarBackgroundHorizontal
+  ScrollBarSliderHorizontal
+  ScrollBarValueLabel
+
+TransparentVerticalScrollBar < VerticalScrollBar
+  opacity: 0.75
+  image-color: #ffffff00
+
+TransparentHorizontalScrollBar < HorizontalScrollBar
+  opacity: 0.75
+  image-color: #ffffff00

@@ -1,0 +1,4 @@
+EmoteWidget < UIEmoteWidget
+  id: emoteWidget
+  size: 100 100
+  phantom: true

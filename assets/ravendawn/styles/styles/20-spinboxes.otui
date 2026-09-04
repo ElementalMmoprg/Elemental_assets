@@ -1,0 +1,17 @@
+SpinBox < TextEdit
+  __class: UISpinBox
+  text-align: left
+  size: 86 27
+  padding: 0 0 0 10
+
+  UIButton
+    id: up
+    size: 13 13
+    anchors.top: parent.top
+    anchors.right: parent.right
+
+  UIButton
+    id: down
+    size: 13 13
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right

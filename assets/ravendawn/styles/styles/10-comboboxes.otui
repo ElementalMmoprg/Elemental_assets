@@ -1,0 +1,98 @@
+ComboBoxPopupMenuButton < UIWidget
+  height: 45
+  text-align: left
+  text-offset: 4 0
+  background-color: alpha
+  margin: 1
+  font: poppins-semibold-13
+  text-color: #ced2d9
+
+  $disabled:
+    text-color: #ced2d988
+
+  $hover:
+    text-color: #36f991
+  
+  $on:
+    text-color: #36f991
+
+ComboBoxPopupMenu < UIPopupMenu
+  image-source: /images/ui/dropdown/bg_dropdown
+  image-border: 3
+
+ComboBox < UIComboBox
+  font: poppins-semibold-14
+  text-offset: 17 2
+  text-align: left
+  image-source: /images/ui/dropdown/dropdown
+  image-border: 3
+  image-border-right: 36
+  image-auto-resize: true
+
+ComboBoxPopupScrollMenu < ComboBoxPopupMenu
+ComboBoxPopupScrollMenuButton < ComboBoxPopupMenuButton
+
+ExpandingComboBoxPopupMenuButton < UIButton
+  height: 45
+  text-align: left
+  text-offset: 4 0
+  background-color: alpha
+  margin: 1
+  font: poppins-semibold-24
+  text-color: #ced2d9
+
+  $disabled:
+    text-color: #ced2d988
+
+  $hover:
+    text-color: #36f991
+
+ExpandingComboBoxPopupMenu < UIPopupMenu
+  image-source: /images/ui/misc/dropdown_vic
+  image-clip: 0 135 430 45
+  image-border: 9
+
+ExpandingComboBox < UIComboBoxExpanding
+  font: poppins-semibold-24
+  size: 430 45
+  text-offset: 36 3
+  text-align: left
+  image-source: /images/ui/misc/dropdown_vic
+  image-border: 9
+  image-border-left: 35
+  image-clip: 0 0 430 45
+
+  $hover !disabled:
+    image-clip: 0 45 430 45
+
+  $on:
+    image-clip: 0 90 430 45
+
+  $disabled:
+    color: #dfdfdf88
+
+ExpandingComboBoxPopupScrollMenu < ExpandingComboBoxPopupMenu
+ExpandingComboBoxPopupScrollMenuButton < ExpandingComboBoxPopupMenuButton
+
+ComboBoxPopupMenuButton < UIButton
+  height: 45
+  font: poppins-semibold-14
+  text-offset: 17 2
+  text-align: left
+  background-color: alpha
+  margin: 1
+  text-color: #ced2d9
+
+  $disabled:
+    text-color: #ced2d988
+
+  $hover:
+    text-color: #36f991
+
+MultiComboPopupMenuButton < ComboBoxPopupMenuButton
+MultiComboBoxPopupMenu < ComboBoxPopupMenu
+MultiComboBox < ComboBox
+  &multiSelect: true
+
+MultiComboBoxPopupScrollMenu < ComboBoxPopupScrollMenu
+MultiComboBoxPopupScrollMenuButton < ComboBoxPopupScrollMenuButton

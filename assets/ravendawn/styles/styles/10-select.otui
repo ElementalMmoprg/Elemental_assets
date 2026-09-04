@@ -1,0 +1,290 @@
+TrueSelect < UIWidget
+  image-source: /images/ui/misc/select_background_true
+  @onClick: |
+    self.cursor:setOn(not self.cursor:isOn())
+    self:setOn(self.cursor:isOn())
+
+  UIWidget
+    id: cursor
+    image-source: /images/ui/misc/select_cursor_true
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-left: -4
+    margin-top: -4
+    phantom: true
+    $on:
+      margin-left: 12
+
+TrueFalseSelect < UIWidget
+  image-source: /images/ui/misc/select_background_false
+  $checked:
+    image-source: /images/ui/misc/select_background_true
+  @onClick: |
+    self.cursor:setOn(not self.cursor:isOn())
+    self:setOn(self.cursor:isOn())
+  $on:
+    image-source: /images/ui/misc/select_background_true
+  @onCheckChange: |
+    addEvent(function()
+      self.cursor:setChecked(self:isChecked())
+    end)
+  UIWidget
+    id: cursor
+    image-source: /images/ui/misc/select_cursor_false
+    $checked:
+      image-source: /images/ui/misc/select_cursor_true
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-left: -4
+    margin-top: -4
+    phantom: true
+    $on:
+      image-source: /images/ui/misc/select_cursor_true
+      margin-left: 12
+
+SideSelect < UIWidget
+  phantom: true
+  image-source: /images/ui/windows/market/offer_type_background
+  image-border: 20
+  &left_text: ''
+  &right_text: ''
+  &left_icon_path: ''
+  &right_icon_path: ''
+
+  @onSetup: |
+    if self.left_icon_path and self.left_icon_path ~= '' then
+      self.left_option.icon:setVisible(true)
+      self.left_option.icon:setImageSource(self.left_icon_path)
+
+      local iconSize = self.left_option.icon:getImageTextureSize()
+      self.left_option.icon:setSize(iconSize)
+
+      self.left_option.text:setMarginLeft(iconSize.width/2 + 4)
+    end
+
+    if self.right_icon_path and self.right_icon_path ~= '' then
+      self.right_option.icon:setVisible(true)
+      self.right_option.icon:setImageSource(self.right_icon_path)
+
+      local iconSize = self.right_option.icon:getImageTextureSize()
+      self.right_option.icon:setSize(iconSize)
+
+      self.right_option.text:setMarginLeft(iconSize.width/2 + 4)
+    end
+
+    if self.left_text then
+      self.left_option.text:setText(tr(self.left_text))
+    end
+    if self.right_text then
+      self.right_option.text:setText(tr(self.right_text))
+    end
+
+    if self.left_tooltip then
+      self.left_option:setTooltip(tr(self.left_tooltip))
+    end
+    if self.right_tooltip then
+      self.right_option:setTooltip(tr(self.right_tooltip))
+    end
+
+    local left_size = self.left_size
+    if not left_size or left_size <= 0 then
+      left_size = self:getWidth()/2
+    end
+
+    local right_size = self.right_size
+    if not right_size or right_size <= 0 then
+      right_size = self:getWidth() - left_size
+    end
+
+    self.left_option:setWidth(left_size)
+    self.right_option:setWidth(right_size)
+
+    self.left_option:setOn(true)
+
+  UIWidget
+    id: left_option
+    anchors.left: parent.left
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    image-source: 
+    image-border: 20
+    &disabled: false
+    $on:
+      image-source: /images/ui/windows/market/offer_type_selected
+
+    UIWidget
+      id: text
+      &ignoreTr: true
+      anchors.centerIn: parent
+      phantom: true
+      font: poppins-14
+      text-auto-resize: true
+      text-color: white
+      $on:
+        text-color: #36F991
+
+    UIWidget
+      id: icon
+      visible: false
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: text.left
+      margin-right: 8
+      image-auto-resize: true
+      phantom: true
+    
+    @onStateChange: |
+      function(self, state)
+        self.text:setOn(state)
+      end
+    
+    @onClick: |
+      if self.disabled or self:isOn() then
+        return
+      end
+      local parent = self:getParent()
+      parent.left_option:setOn(true)
+      parent.right_option:setOn(false)
+
+      if parent.onClick() then
+        parent.onClick(self)
+      end
+  
+  UIWidget
+    id: right_option
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    image-source: 
+    image-border: 20
+    $on:
+      image-source: /images/ui/windows/market/offer_type_selected
+
+    UIWidget
+      id: text
+      &ignoreTr: true
+      anchors.centerIn: parent
+      phantom: true
+      font: poppins-14
+      text-auto-resize: true
+      text-color: white
+      $on:
+        text-color: #36F991
+
+    UIWidget
+      id: icon
+      visible: false
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: text.left
+      margin-right: 8
+      image-auto-resize: true
+      phantom: true
+    
+    @onStateChange: |
+      function(self, state)
+        self.text:setOn(state)
+      end
+
+    @onClick: |
+      if self.disabled or self:isOn() then
+        return
+      end
+      local parent = self:getParent()
+      parent.left_option:setOn(false)
+      parent.right_option:setOn(true)
+
+      if parent.onClick() then
+        parent.onClick(self)
+      end
+
+MultipleSelectOption < UIWidget
+  id: option
+  image-source: 
+  image-border: 20
+  &disabled: false
+  $on:
+    image-source: /images/ui/windows/market/offer_type_selected
+
+  UIWidget
+    id: text
+    &ignoreTr: true
+    anchors.centerIn: parent
+    phantom: true
+    font: poppins-14
+    text-auto-resize: true
+    text-color: #7E828B
+    $on:
+      text-color: #36F991
+  
+  @onStateChange: |
+    function(self, state)
+      self.text:setOn(state)
+    end
+  
+  @onClick: |
+    if self.disabled or self:isOn() then
+      return
+    end
+    self:getParent():updateOption(self:getId())
+
+MultipleSelect < UIWidget
+  id: multiple_select
+  height: 40
+  phantom: true
+  image-source: /images/ui/windows/market/offer_type_background
+  image-border: 20
+  &options: {}
+
+  @onSetup: |
+    if #self.options == 0 then
+      return
+    end
+
+    local optionWidth = self:getWidth() / #self.options
+    for i, option in ipairs(self.options) do
+      local widget = g_ui.createWidget('MultipleSelectOption', self.options_panel)
+      if widget then
+        widget:setId(option)
+        widget:setWidth(optionWidth)
+        widget.text:setText(option:titleCase())
+
+        if i == 1 then
+          widget:setOn()
+        end
+      end
+    end
+  
+  UIWidget
+    id: options_panel
+    anchors.fill: parent
+    layout:
+      type: horizontalBox
+
+    @updateOption: |
+      function(self, optionId)
+        if not optionId then
+          return
+        end
+
+        for _, option in ipairs(self:getChildren()) do
+          option:setOn(option:getId() == optionId)
+        end
+
+        local parent = self:getParent()
+        if parent.onClick then
+          parent:onClick()
+        end
+      end
+
+  @getSelectedId: |
+    for _, option in ipairs(self.options_panel:getChildren()) do
+      if option:isOn() then
+        return option:getId()
+      end
+    end
+  
+  @setSelectedId: |
+    function(self, optionId)
+      for _, option in ipairs(self.options_panel:getChildren()) do
+        option:setOn(option:getId() == optionId)
+      end
+    end

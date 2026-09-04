@@ -1,0 +1,146 @@
+Panel < UIWidget
+  phantom: true
+  auto-focus: first
+
+ScrollablePanel < UIScrollArea
+  phantom: true
+  auto-focus: first
+
+EditModePanelHeader < UIWidget
+  image-source: /images/ui/windows/base_window/edit_header
+  image-border: 3
+  text-align: left
+  text-offset: 20 3
+  icon-source: /images/ui/windows/base_window/edit_icon
+  icon-align: left
+  icon-offset: 4 0
+  font: poppins-12
+  color: #1F2124
+  visible: false
+  draggable: true
+  @onDragEnter: return self.editPanel:getParent().onDragEnter(self.editPanel:getParent(),g_window.getMousePosition())
+  @onDragMove: self.editPanel:getParent().onDragMove(self.editPanel:getParent(),g_window.getMousePosition())
+
+EditModePanelHeaderVertical < UIWidget
+  image-source: /images/ui/windows/base_window/edit_header_vertical
+  image-border: 3
+  icon-source: /images/ui/windows/base_window/edit_icon_vertical
+  icon-align: top
+  icon-offset: 0 4
+  visible: false
+  draggable: true
+  @onDragEnter: return self.editPanel:getParent().onDragEnter(self.editPanel:getParent(),g_window.getMousePosition())
+  @onDragMove: self.editPanel:getParent().onDragMove(self.editPanel:getParent(),g_window.getMousePosition())
+
+  UILabel
+    id: text
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 30
+    text-auto-resize: true
+    text-offset: 0 2
+    font: poppins-12
+    color: #1F2124
+    rotation: 90
+
+
+EditModePanel < Panel
+  id: editModeBackground
+  image-source: /images/ui/windows/base_window/edit_background
+  image-border: 5
+  anchors.centerIn: parent
+  &updateHeight: |
+    function(self)
+      local paddingTop, paddingLeft = 10, 40
+      local size = self:getSize()
+      size.height = size.height + paddingTop
+      size.width = size.width + paddingLeft
+
+      local editPanel = self.editModeBackground
+      if editPanel then
+        editPanel.header:setMarginBottom(paddingTop / 2)
+        editPanel:setSize(size)
+      end
+    end
+  @onSetup: |
+    addEvent(function()
+      local parent = self:getParent()
+      if not parent then
+        return
+      end
+      self.header = g_ui.createWidget('EditModePanelHeader', modules.game_interface.getHUDPanel())
+      self.header:addAnchor(AnchorBottom, parent:getId(), AnchorTop)
+      self.header:addAnchor(AnchorHorizontalCenter, parent:getId(), AnchorHorizontalCenter)
+      self.header:setText(self.title or parent:getId())
+      self.header.editPanel = self
+      self.header:setVisible(self:isVisible())
+      self.updateHeight(parent)
+      connect(parent, {
+        onGeometryChange = self.updateHeight
+      })
+    end)
+  @onDestroy: |
+    if self.header then
+      self.header:destroy()
+      self.header = nil
+    end
+  @onVisibilityChange: |
+    if self.header then
+      self.header:setVisible(self:isVisible())
+    end
+  @onGeometryChange: |
+    if self.header then
+      self.header:setWidth(self:getWidth())
+    end
+
+EditModePanelVertical < EditModePanel
+  id: editModeBackground
+  image-source: /images/ui/windows/base_window/edit_background
+  image-border: 5
+  anchors.centerIn: parent
+  &updateHeight: |
+    function(self)
+      local paddingTop, paddingLeft = 10, 40
+      local size = self:getSize()
+      size.height = size.height + paddingTop
+      size.width = size.width + paddingLeft
+
+      local editPanel = self.editModeBackground
+      if editPanel then
+        editPanel.header:setMarginLeft(paddingLeft / 2)
+        editPanel:setSize(size)
+      end
+    end
+  @onSetup: |
+    addEvent(function()
+      local parent = self:getParent()
+      self.header = g_ui.createWidget('EditModePanelHeaderVertical', modules.game_interface.getHUDPanel())
+      self.header:addAnchor(AnchorLeft, parent:getId(), AnchorRight)
+      self.header:addAnchor(AnchorVerticalCenter, parent:getId(), AnchorVerticalCenter)
+      self.header.text:setText(self.title or parent:getId())
+      self.header.editPanel = self
+      self.header:setVisible(self:isVisible())
+      self.updateHeight(parent)
+      connect(parent, {
+        onGeometryChange = self.updateHeight
+      })
+    end)
+  @onDestroy: |
+    if self.header then
+      self.header:destroy()
+      self.header = nil
+    end
+  @onVisibilityChange: |
+    if self.header then
+      self.header:setVisible(self:isVisible())
+    end
+  @onGeometryChange: |
+    if self.header then
+      self.header:setHeight(self:getHeight())
+    end
+
+HorizontalBox < Panel
+  layout: horizontalBox
+
+VerticalBox < Panel
+  layout: verticalBox

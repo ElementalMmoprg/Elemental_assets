@@ -1,0 +1,106 @@
+Pet < UIPet
+  size: 500 767
+  PetIllustration
+  PetName
+  PetRarity
+  PetFrame
+  PetDescription
+  
+PetIllustration < UIWidget
+  id: illustration
+  anchors.centerIn: parent
+  phantom: true
+  &onUpdate: |
+    function(self)
+      local parent = self:getParent()
+      local name = parent:getName()
+      if not name then
+        self:hide()
+        return
+      end
+
+      local path = parent:getIllustrationPath()
+      self:setImageSource(path)
+
+      local parentHeight = parent:getHeight()
+      -- width is 484
+      -- we need to adjust it when parent width is different
+      local parentWidth = parent:getWidth()
+      local newWidth = 484 * parentWidth / 500
+      self:setWidth(newWidth)
+
+      -- height is 673
+      -- we need to adjust it when parent height is different
+      local newHeight = 673 * parentHeight / 767
+      self:setHeight(newHeight)
+      self:show()
+    end
+
+PetRarity < UIWidget
+  id: rarity
+  anchors.fill: parent
+  phantom: true
+  &onUpdate: |
+    function(self)
+      self:setImageSource(string.format('/images/ui/pets/rarity/%s', self:getParent():getRarity()))
+    end
+
+PetFrame < UIWidget
+  id: frame
+  anchors.fill: parent
+  image-source: /images/ui/pets/rarity/frame
+  phantom: true
+
+PetDescription < UIWidget
+  id: description
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.bottom: parent.bottom
+  text-wrap: true
+  font: poppins-semibold-10
+  visible: false
+
+  @onSetup: |
+    local parent = self:getParent()
+    -- margin bottom is 60 when parent height is 767
+    -- we need to adjust it when parent height is different
+    local parentHeight = parent:getHeight()
+    local newMarginBottom = 60 * parentHeight / 767
+    self:setMarginBottom(newMarginBottom)
+
+    -- height is 170 when parent height is 767
+    -- we need to adjust it when parent height is different
+    local newHeight = 170 * parentHeight / 767
+    self:setHeight(newHeight)
+
+    -- margin left/right is 30 when parent width is 500
+    -- we need to adjust it when parent width is different
+    local parentWidth = parent:getWidth()
+    local newMargin = 30 * parentWidth / 500
+    self:setMarginLeft(newMargin)
+    self:setMarginRight(newMargin)
+
+PetName < UIWidget
+  id: name
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.bottom: parent.bottom
+  image-source: /images/ui/ravencards/name_background
+  font: mirza-medium-30
+  text-wrap: true
+  text-align: center
+  text-color: #ced2d9
+  height: 120
+  image-border-top: 5
+  image-border-left: 10
+  image-border-right: 10
+  text-offset: 0 -20
+  phantom: true
+  @onSetup: |
+    local parent = self:getParent()
+    -- margin left/right is 35 when parent width is 500
+    -- we need to adjust it when parent width is different
+    local parentWidth = parent:getWidth()
+    local newMargin = 35 * parentWidth / 500
+    self:setMarginLeft(newMargin)
+    self:setMarginRight(newMargin)

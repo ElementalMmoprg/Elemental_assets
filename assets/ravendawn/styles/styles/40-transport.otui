@@ -1,0 +1,96 @@
+GameTransportAttachedWindowFilterPanel < UIWidget
+  id: filter_panel
+  height: 40
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.top: parent.top
+  image-source: /images/ui/windows/market/search_panel_background
+  image-border: 5
+  image-color: white
+  $disabled:
+    image-color: #7E828B
+  @onStateChange: |
+    function(self, state)
+      for _, child in ipairs(self:getChildren()) do
+        child:setOn(state)
+      end
+    end
+  @onClick: |
+    local state = self:isOn()
+    self:setOn(not state)
+    modules.game_transport.GameTransport:onFilterPanelClick(self, not state)
+
+  UIWidget
+    id: icon
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10
+    image-source: /images/ui/windows/market/filter_panel_icon
+    size: 20 20
+    image-color: white
+    phantom: true
+    $on:
+      image-color: #36F991
+    $disabled:
+      image-color: #7E828B
+  
+  UIWidget
+    id: text
+    anchors.left: icon.right
+    anchors.verticalCenter: parent.verticalCenter
+    text: Filter
+    font: poppins-14
+    text-color: #CED2D9
+    margin-left: 10
+    phantom: true
+    text-auto-resize: true
+    text-offset: 0 1
+    $on:
+      text-color: #36F991
+    $disabled:
+      text-color: #7E828B
+
+  UIWidget
+    id: indicative
+    size: 20 20
+    anchors.left: text.right
+    anchors.verticalCenter: text.verticalCenter
+    image-source: /images/ui/windows/market/filter_indicative
+    text-color: #18181B
+    text-offset: 1 2
+    font: poppins-14
+    margin-left: 5
+    visible: true
+    opacity: 1.0
+    @onSetup: |
+      function(self)
+        self:setEnabled(false)
+      end
+    @onClick: |
+      modules.game_transport.GameTransport:clearAllFilters()
+    $hover:
+      opacity: 1.0
+      image-source: /images/ui/windows/market/filter_indicative_clear
+      text-offset: 50 50
+    $hover disabled:
+      visible: false
+    $pressed:
+      opacity: 0.9
+    $pressed disabled:
+      visible: false
+    $disabled:
+      visible: false
+
+  UIWidget
+    id: arrow
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/ui/windows/market/filter_panel_arrow_down
+    size: 20 20
+    phantom: true
+    margin-right: 10
+    image-color: white
+    $on:
+      image-source: /images/ui/windows/market/filter_panel_icon_active
+    $disabled:
+      image-color: #7E828B

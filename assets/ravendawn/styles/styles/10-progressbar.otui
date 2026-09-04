@@ -1,0 +1,34 @@
+SpellProgressRect < UISpellProgressRect
+  background: #000000AA
+  percent: 100
+  focusable: false
+  cooldown: 1000
+
+  Label
+    id: text
+    text: 30
+    text-auto-resize: true
+    text-offset: 0 0
+    anchors.centerIn: parent
+    font: poppins-semibold-bordered-16
+    visible: false
+
+DynamicEventProgressBar < UIWidget
+  id: progressBox
+  border: 1 #e7b131
+  anchors.left: parent.left
+  anchors.top: parent.top
+  anchors.right: parent.right
+  image-source: /images/ui/windows/dynamicevents/bgProgress
+  UIProgressBar
+    id: overallProgressBar
+    anchors.fill: parent
+    margin: 3
+    background-color: #e7b131
+    @onSetup: self:setPercent(0)
+  UIProgressBar
+    id: personalProgressBar
+    anchors.fill: parent
+    margin: 3
+    background-color: green
+    @onSetup: self:setPercent(0)

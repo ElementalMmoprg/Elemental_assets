@@ -1,0 +1,10 @@
+fonts
+  poppins-semibold-shadow-14:
+    texture: poppins-semibold-shadow-14
+    auto-sizing: true
+    auto-sizing-multiplier: 4
+    font-size: 14
+    check-only-white-pixels: true
+    y-offset: 0
+    spacing: -6 -36
+    space-width: 12

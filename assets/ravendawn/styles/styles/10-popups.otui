@@ -1,0 +1,100 @@
+
+PopupWindow < UIWindow
+  id: popupWindow
+  padding: 53 13 22 12
+  image-border: 20
+  size: 400 400
+  opacity: 1
+  text-offset: 0 21
+  font: poppins-semibold-16
+  text-align: top
+  color: #CED2D9
+  image-source: /images/ui/windows/popup/background
+  anchors.centerIn: parent
+
+  $dragging:
+    opacity: 1
+
+PopupWindowButtonClose < UIButton
+  size: 16 17
+  anchors.top: parent.top
+  anchors.right: parent.right
+  image-source: /images/ui/windows/popup/button_close
+  opacity: 1.0
+  $hover:
+    opacity: 0.9
+  $pressed:
+    opacity: 0.8
+
+PopupWindowTitleSeparator < UIWidget
+  size: 400 2
+  background-color: #e7b131
+
+PopupWindowLabel < UIWidget
+  id: messageBoxLabel
+  background-color: #181A1D
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.top: parent.top
+  text-wrap: true
+  text-auto-resize: false
+  text-align: center
+  text-offset: 0 6
+  font: poppins-14
+  &minTextWidth: 250
+  &maxTextWidth: 800
+  &verticalBorderWidth: 30
+  &horizontalBorderWidth: 80
+  &autoResizeParent: true
+  @onTextChange: |
+    local textSize = self:getTextSize()
+    local newWidth = math.min(self.maxTextWidth, math.max(textSize.width + self.horizontalBorderWidth, self.minTextWidth))
+    self:setWidth(newWidth)
+
+    addEvent(function()
+      local newHeight = self:getTextSize().height + self.verticalBorderWidth
+      local increasedHeight = newHeight - self:getHeight()
+      self:setHeight(self:getTextSize().height + self.verticalBorderWidth)
+
+      if self.autoResizeParent then
+        self:getParent():setHeight(self:getParent():getHeight() + increasedHeight)
+      end
+    end)
+
+PopupWindowButtonHolder < UIWidget
+  id: buttonHolder
+  size: 500 50
+  anchors.fill: parent.fill
+  margin-left: 15
+  margin-right: 15
+
+PopupWindowButton < Button
+  @onSetup: |
+    addEvent(function()
+      local textWidget = self:getChildById('text')
+      textWidget:setFont("poppins-14")
+      local customStyle = self.customStyle or textToButtonColor(textWidget:getText():lower())
+      if customStyle then
+        self:setStyle(customStyle)
+      else
+        self:setStyle('NeutralButton')
+      end
+    end)
+
+PopupWindowProgressBar < UIProgressBar3
+  id: progress_panel
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  image-source: /images/ui/windows/popup/progress_background
+  height: 3
+  image-border: 1
+
+  Panel
+    id: progress
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/ui/windows/popup/progress_fill
+    margin-left: 0
+    margin-right: 0
+    height: 3
+    image-border: 1

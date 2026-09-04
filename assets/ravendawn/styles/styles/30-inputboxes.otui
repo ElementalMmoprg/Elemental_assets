@@ -1,0 +1,46 @@
+
+InputBoxLabel < Label
+  font: myriad-pro-16
+  color: white
+  fixed-size: true
+  text-align: left
+  anchors.left: parent.left
+  anchors.right: parent.right
+InputBoxLineEdit < TextEdit
+  font: myriad-pro-16
+  color: white
+InputBoxTextEdit < MultilineTextEdit
+  font: myriad-pro-16
+  color: white
+  text-wrap: true
+InputBoxSpinBox < SpinBox
+InputBoxCheckBox < CheckBox
+InputBoxComboBox < ComboBox
+InputBoxComboBoxPopupMenu < ComboBoxPopupMenu
+InputBoxComboBoxPopupMenuButton < ComboBoxPopupMenuButton
+InputBoxButton < Button
+  margin-left: 10
+  fixed-size: true
+
+InputBoxButtonsPanel < Panel
+  height: 20
+  margin-top: 4
+  focusable: false
+  layout:
+    type: horizontalBox
+    align-right: true
+
+InputBoxWindow < PopupWindow
+  __class: UIInputBox
+  width: 320
+  anchors.centerIn: parent
+  draggable: false
+  layout:
+    type: verticalBox
+    fit-children: true
+    spacing: 2
+
+InputBoxBackground < Panel
+  phantom: false
+  background-color: #00000080
+  anchors.fill: parent

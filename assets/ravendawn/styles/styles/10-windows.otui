@@ -1,0 +1,294 @@
+MainWindowEdge < UIWidget
+  height: 6
+  anchors.left: parent.left
+  anchors.right: parent.right
+
+MainWindowEdgeTop < MainWindowEdge
+  id: edge_top
+  anchors.top: parent.top
+  image-source: /images/ui/windows/base_window/edge_top
+
+MainWindowEdgeBottom < MainWindowEdge
+  id: edge_bottom
+  anchors.bottom: parent.bottom
+  image-source: /images/ui/windows/base_window/edge_bottom
+
+MainWindowTopPanel < UIWidget
+  id: top_panel
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  height: 47
+  phantom: true
+  UIWidget
+    id: border
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 1
+    background-color: #1d1f21
+
+  MainWindowTopPanelIcon
+    margin-top: 2
+  MainWindowTopPanelLabel
+    margin-top: 2
+  MainWindowCloseButton
+    margin-top: 2
+
+MainWindowTopPanelIcon < UIWidget
+  id: icon
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.left: parent.left
+  size: 25 25
+  margin-left: 20
+  phantom: true
+  @onSetup: |
+    addEvent(function()
+      local parent = self:getParent()
+      if not parent then
+        return
+      end
+      local parentParent = parent:getParent()
+      if not parentParent then
+        return
+      end
+      local path = self.iconName or self:getParent():getParent().iconName or nil
+      if not path then
+        path = self.iconPath or self:getParent():getParent().iconPath or nil
+        if not path then
+          return
+        end
+      end
+      if path:startswith('/') then
+        self:setImageSource(path)
+        local size = self.iconSize or self:getParent():getParent().iconSize or nil
+        if size then
+          self:setSize(size)
+        end
+      else
+        self:setImageSource(string.format('/images/ui/windows/base_window/%s', path))
+        local width = self:getImageTextureWidth()
+        local height = self:getImageTextureHeight()
+        self:setSize({width = width, height = height})
+      end
+    end)
+
+MainWindowCloseButton < UIWidget
+  id: close_button
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.right: parent.right
+  margin-right: 20
+  size: 28 28
+  image-source: /images/ui/windows/base_window/close_button
+  $checked:
+    image-source: /images/ui/windows/base_window/minimized_button
+  $hover !checked:
+    image-source: /images/ui/windows/base_window/close_button_active
+  $hover checked:
+    image-source: /images/ui/windows/base_window/minimized_button_active
+  $pressed !checked:
+    image-source: /images/ui/windows/base_window/close_button
+  $pressed checked:
+    image-source: /images/ui/windows/base_window/minimized_button
+  @onClick: |
+    local parent = self:getParent()
+    while parent:getClassName() ~= "UIWindow" do
+      parent = parent:getParent()
+    end
+    parent.onEscape(parent, true)
+
+MainWindowCloseButtonRight < MainWindowCloseButton
+  image-source: /images/ui/windows/base_window/close_button_left
+  $hover:
+    image-source: /images/ui/windows/base_window/close_button_left_active
+  $pressed:
+    image-source: /images/ui/windows/base_window/close_button_left
+  @onClick: function() end
+
+MainWindowCloseButtonLeft < MainWindowCloseButton
+  image-source: /images/ui/windows/base_window/close_button_right
+  $hover:
+    image-source: /images/ui/windows/base_window/close_button_right_active
+  $pressed:
+    image-source: /images/ui/windows/base_window/close_button_right
+  @onClick: function() end
+
+MainWindowCloseButtonTop < MainWindowCloseButton
+  image-source: /images/ui/windows/base_window/close_button_down
+  $hover:
+    image-source: /images/ui/windows/base_window/close_button_down_active
+  $pressed:
+    image-source: /images/ui/windows/base_window/close_button_down
+  @onClick: function() end
+
+MainWindowTopPanelLabel < UIWidget
+  id: title
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.left: icon.right
+  anchors.right: parent.right
+  text-align: left
+  margin-left: 10
+  text-offset: 0 5
+  text-auto-resize: true
+  font: poppins-15
+  phantom: true
+  padding-top: 5
+
+MainWindowContent < UIWidget
+  id: content
+  anchors.top: top_panel.bottom
+  anchors.bottom: edge_bottom.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  padding: 20 28 20 28
+
+MainWindowScrollableContent < ScrollablePanel
+  id: content
+  anchors.top: top_panel.bottom
+  anchors.bottom: edge_bottom.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  padding: 20 28 20 28
+  vertical-scrollbar: main_window_scrollbar
+  layout:
+    type: verticalBox
+
+MainWindowScrollableContentScrollBar < VerticalScrollBar
+  id: main_window_scrollbar
+  anchors.top: content.top
+  anchors.right: content.right
+  anchors.bottom: content.bottom
+  step: 48
+  pixels-scroll: true
+  margin-top: 5
+  margin-bottom: 5
+
+MainWindowBackground < UIWidget
+  id: background
+  anchors.fill: parent
+  phantom: true
+  image-source: /images/ui/windows/base_window/background
+  image-border: 15
+
+MainWindowAboveContent < UIWidget
+  id: above_content
+  height: 0
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+
+MainWindow < UIWindow
+  size: 400 400
+
+  MainWindowBackground
+  MainWindowEdgeTop
+  MainWindowEdgeBottom
+  MainWindowTopPanel
+  @onSetup: |
+    if self.onSetupContent then
+      local content = self:getChildById('content')
+      if content then
+        self:onSetupContent(content)
+      else
+        print('MainWindow: content not found')
+      end
+    end
+    if self.onSetupBottomContent then
+      self:onSetupBottomContent()
+    end
+
+    local aboveContent = self:getChildById('above_content')
+    if aboveContent then
+      self.edge_top:addAnchor(AnchorTop, 'above_content', AnchorBottom)
+      self.background:addAnchor(AnchorTop, 'above_content', AnchorBottom)
+      self.top_panel:addAnchor(AnchorTop, 'above_content', AnchorBottom)
+    end
+
+    local hotkeyCombo = self.hotkeyId and GameHotkeyManager:getHotkeyMainKeyCombo(self.hotkeyId) or ''
+    if hotkeyCombo ~= '' then
+      self.top_panel.title:setColoredText(GetHighlightedText(string.format('%s {(%s), #36f991}', tr(self.title or ''), hotkeyCombo)))
+    else
+      self.top_panel.title:setText(tr(self.title or ''))
+    end
+
+    if self.hideCloseButton then
+      self.top_panel.close_button:hide()
+    else
+      self.top_panel.close_button:setChecked(self.closeButton)
+    end
+    if self.isGeneralUIWindow then
+      self.top_panel.close_button.nosound = true
+      connect(self, {
+        onVisibilityChange = function(widget, visible)
+          g_sound.onWidgetVisibilityChange(widget, visible)
+        end
+      })
+    end
+
+    if self.hotkeyId then
+      self:bindDisconnects(connect(GameHotkeyManager, {
+        onHotkeyUpdate = function(hotkeyId, hotkeyCombo)
+          if not self.hotkeyId or self.hotkeyId <= 0 then
+            return
+          end
+
+          if hotkeyId ~= self.hotkeyId then
+            if hotkeyId <= 0 then
+              return
+            end
+            
+            hotkeyCombo = GameHotkeyManager:getHotkeyMainKeyCombo(self.hotkeyId)
+          end
+
+          if hotkeyCombo and hotkeyCombo ~= '' then
+            self.top_panel.title:setColoredText(GetHighlightedText(string.format('%s {(%s), #36f991}', tr(self.title or ''), hotkeyCombo)))
+          else
+            self.top_panel.title:setText(tr(self.title or ''))
+          end
+        end
+      }))
+    end
+  @onEscape: addEvent(function() self:hide() end)
+
+// add main window content through your custom widget
+//MainWindowContent
+
+AttachedWindowTopPanel < UIWidget
+  id: top_panel
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  height: 47
+  phantom: true
+  UIWidget
+    id: border
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 1
+    background-color: #1d1f21
+
+  MainWindowTopPanelLabel
+    anchors.left: parent.left
+  MainWindowCloseButton
+
+AttachedWindow < UIAttachedWindow
+  size: 400 400
+  image-source: /images/ui/windows/base_window/attached_background
+  image-border: 15
+  MainWindowEdgeTop
+    height: 3
+  MainWindowEdgeBottom
+    height: 3
+  AttachedWindowTopPanel
+
+GeneralMainWindow < UIWindow
+  size: 370 370
+  image-source: /images/ui/windows/base_window/background
+  image-border: 10
+  anchors.centerIn: parent
+
+GeneralMainWindowContent < UIWidget
+  anchors.fill: parent
+  margin: 10
+  phantom: true

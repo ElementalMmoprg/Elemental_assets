@@ -1,0 +1,224 @@
+Button < UIButton
+  height: 50
+  text-hidden: true
+  image-border: 5
+  image-offset: 6 6
+  &minWidth: 85
+  enabled: true
+  background-color: #181A1D
+  image-source: /images/ui/buttons/background_normal
+  $on:
+    image-source: /images/ui/buttons/background_hover
+
+  UIWidget
+    id: text
+    height: 50
+    phantom: true
+    opacity: 1.0
+    anchors.fill: parent
+    image-source: /images/ui/buttons/background
+    image-border-left: 10
+    image-border-right: 10
+    text-align: center
+    text-horizontal-auto-resize: true
+    text-offset: 0 3
+    font: poppins-semibold-16
+    $on:
+      text-color: #131416
+    $disabled:
+      opacity: 0.5
+    @onTextChange: |
+      function(self)
+        local parent = self:getParent()
+        local textSize = self:getTextSize()
+
+        local newWidth = math.max(textSize.width + 32, parent.minWidth or 100)
+        self:setWidth(newWidth)
+        parent:setWidth(newWidth)
+      end
+    @onSetup:
+      function(self)
+        addEvent(function()
+          self:onTextChange()
+        end)
+      end
+
+  UIWidget
+    id: icon
+    phantom: true
+    anchors.centerIn: parent
+    opacity: 1.0
+    $on !checked:
+      image-color: #131416
+    $on checked:
+      image-color: #FFFFFF
+    $disabled:
+      opacity: 0.5
+
+PrimaryButton < Button
+  &color: '#36F991'
+
+SecondaryButton < Button
+  &color: '#A556FF'
+
+SuccessButton < Button
+  &color: '#77D463'
+
+InfoButton < Button
+  &color: '#5DA4FB'
+
+DangerButton < Button
+  &color: '#FF5151'
+
+WarningButton < Button
+  &color: '#fbfb79'
+
+NeutralButton < Button
+  &color: '#A6AAB2'
+
+OrangeButton < Button
+  &color: '#FFA851'
+
+YellowButton < Button
+  &color: '#FEFEC6'
+
+WhiteButton < Button
+  &color: '#FFFFFF'
+
+DisabledButton < Button
+  &color: '#7E828B'
+  enabled: false
+
+RadioButton < UIWidget
+  width: 14
+  height: 14
+  image-source: /images/ui/buttons/radio/radio_off
+  $on:
+    image-source: /images/ui/buttons/radio/radio_on
+  $checked:
+    image-source: /images/ui/buttons/radio/radio_on
+
+SmallButton < UIButton
+  size: 35 35
+  image-border: 9
+  image-source: /images/ui/buttons/smallbutton
+  $on:
+    image-source: /images/ui/buttons/smallbutton_hovered
+  $hover:
+    image-source: /images/ui/buttons/smallbutton_hovered
+
+UnderscoreButton < UIWidget
+  &minWidth: 85
+  font: poppins-semibold-14
+  text-color: #36f991
+  opacity: 1
+  $disabled:
+    text-color: #595c64
+  $hover:
+    opacity: 0.75
+  $pressed:
+    opacity: 0.5
+  text-auto-resize: true
+
+  @onEnableChange: |
+    if not self.underscore then
+      return
+    end
+    self.underscore:setOn(self:isEnabled())
+
+  @onTextChange: |
+    if not self.underscore then
+      return
+    end
+    self.underscore:onSetup()
+
+  UIWidget
+    id: underscore
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    height: 1
+    background-color: #595c64
+    $on:
+      background-color: #36f991
+
+    @onSetup: |
+      self:setWidth(self:getParent():getTextSize().width + 2)
+
+UnderscoreNeutralButton < UnderscoreButton
+  $!disabled:
+    text-color: #CED2D9
+
+IconButton < UIButton
+  id: icon_button
+  height: 50
+  text-hidden: true
+  image-border: 5
+  image-offset: 6 6
+  enabled: true
+  background-color: #181A1D
+  image-source: /images/ui/buttons/background_normal
+  $on:
+    image-source: /images/ui/buttons/background_hover
+
+  UIWidget
+    id: text_bg
+    anchors.fill: parent
+    image-source: /images/ui/buttons/background
+    image-border-left: 10
+    image-border-right: 10
+    phantom: true
+
+  UIWidget
+    id: text
+    height: 50
+    phantom: true
+    opacity: 1.0
+    anchors.centerIn: parent
+    margin-left: 16
+    text-align: center
+    text-horizontal-auto-resize: true
+    text-offset: 0 3
+    font: poppins-semibold-16
+    $disabled:
+      opacity: 0.5
+    $on:
+      text-color: #131416
+    @onSetup:
+      function(self)
+        addEvent(function()
+          self:onTextChange()
+        end)
+      end
+
+  UIWidget
+    id: icon
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: prev.left
+    margin-right: 10
+    opacity: 1.0
+    $disabled:
+      opacity: 0.5
+    $on !checked:
+      image-color: #131416
+    $on checked:
+      image-color: #FFFFFF
+
+  &minWidth: 80
+
+QuestTokenButton < IconButton
+  id: quest_token_button
+  &color: '#36F991'
+  &textColor: white
+  &iconColor: white
+  &iconPath: '/images/ui/icons/icon_token_20'
+  @onSetup: self.icon:setChecked(true)
+  &resizeText: true
+
+SilverButton < IconButton
+  id: silver_button
+  &color: '#CED2D9'
+  &iconColor: white
+  &iconPath: '/images/ui/icons/silver_21'
+  @onSetup: self.icon:setChecked(true)
+  &resizeText: true

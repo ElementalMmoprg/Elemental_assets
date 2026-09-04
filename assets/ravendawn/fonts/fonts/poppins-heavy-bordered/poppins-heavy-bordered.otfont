@@ -1,0 +1,18 @@
+fonts
+  poppins-heavy-bordered-12
+    texture: poppins-heavy-bordered-12
+    auto-sizing: true
+    auto-sizing-multiplier: 1.8
+    font-size: 12
+    y-offset: -1
+    spacing: -1 0
+    space-width: 5
+
+  poppins-heavy-bordered-14
+    texture: poppins-heavy-bordered-14
+    auto-sizing: true
+    auto-sizing-multiplier: 1.8
+    font-size: 14
+    y-offset: -1
+    spacing: -2 0
+    space-width: 5
