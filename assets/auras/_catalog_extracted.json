@@ -1,0 +1,530 @@
+[
+  {
+    "id": "aura_3",
+    "name": "Aura 3",
+    "clientid": 2394,
+    "frameCount": 4,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_4",
+    "name": "Aura 4",
+    "clientid": 2407,
+    "frameCount": 12,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_5",
+    "name": "Aura 5",
+    "clientid": 2424,
+    "frameCount": 4,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_6",
+    "name": "Aura 6",
+    "clientid": 2410,
+    "frameCount": 4,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_7",
+    "name": "Aura 7",
+    "clientid": 2318,
+    "frameCount": 15,
+    "w": 4,
+    "h": 4
+  },
+  {
+    "id": "aura_8",
+    "name": "Aura 8",
+    "clientid": 2386,
+    "frameCount": 4,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_9",
+    "name": "Aura 9",
+    "clientid": 2192,
+    "frameCount": 11,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_10",
+    "name": "Aura 10",
+    "clientid": 2194,
+    "frameCount": 11,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_11",
+    "name": "Aura 11",
+    "clientid": 2272,
+    "frameCount": 1,
+    "w": 4,
+    "h": 4
+  },
+  {
+    "id": "aura_12",
+    "name": "Aura 12",
+    "clientid": 2273,
+    "frameCount": 4,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_13",
+    "name": "Aura 13",
+    "clientid": 2274,
+    "frameCount": 35,
+    "w": 4,
+    "h": 4
+  },
+  {
+    "id": "aura_14",
+    "name": "Aura 14",
+    "clientid": 2275,
+    "frameCount": 6,
+    "w": 4,
+    "h": 4
+  },
+  {
+    "id": "aura_15",
+    "name": "Aura 15",
+    "clientid": 2276,
+    "frameCount": 6,
+    "w": 4,
+    "h": 4
+  },
+  {
+    "id": "aura_16",
+    "name": "Aura 16",
+    "clientid": 2085,
+    "frameCount": 2,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_17",
+    "name": "Aura 17",
+    "clientid": 2109,
+    "frameCount": 6,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_18",
+    "name": "Aura 18",
+    "clientid": 2176,
+    "frameCount": 14,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_19",
+    "name": "Aura 19",
+    "clientid": 1996,
+    "frameCount": 8,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_20",
+    "name": "Aura 20",
+    "clientid": 1999,
+    "frameCount": 8,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_21",
+    "name": "Aura 21",
+    "clientid": 1997,
+    "frameCount": 8,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_22",
+    "name": "Aura 22",
+    "clientid": 2081,
+    "frameCount": 2,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_23",
+    "name": "Aura 23",
+    "clientid": 2080,
+    "frameCount": 2,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_24",
+    "name": "Aura 24",
+    "clientid": 1904,
+    "frameCount": 15,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_25",
+    "name": "Aura 25",
+    "clientid": 1905,
+    "frameCount": 8,
+    "w": 4,
+    "h": 4
+  },
+  {
+    "id": "aura_26",
+    "name": "Aura 26",
+    "clientid": 1906,
+    "frameCount": 8,
+    "w": 4,
+    "h": 4
+  },
+  {
+    "id": "aura_27",
+    "name": "Aura 27",
+    "clientid": 1913,
+    "frameCount": 12,
+    "w": 7,
+    "h": 7
+  },
+  {
+    "id": "aura_28",
+    "name": "Aura 28",
+    "clientid": 1793,
+    "frameCount": 11,
+    "w": 10,
+    "h": 10
+  },
+  {
+    "id": "aura_29",
+    "name": "Aura 29",
+    "clientid": 1790,
+    "frameCount": 11,
+    "w": 10,
+    "h": 10
+  },
+  {
+    "id": "aura_30",
+    "name": "Aura 30",
+    "clientid": 1794,
+    "frameCount": 11,
+    "w": 10,
+    "h": 10
+  },
+  {
+    "id": "aura_31",
+    "name": "Aura 31",
+    "clientid": 1824,
+    "frameCount": 18,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_32",
+    "name": "Aura 32",
+    "clientid": 1828,
+    "frameCount": 8,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_33",
+    "name": "Aura 33",
+    "clientid": 1626,
+    "frameCount": 6,
+    "w": 2,
+    "h": 2
+  },
+  {
+    "id": "aura_34",
+    "name": "Aura 34",
+    "clientid": 1575,
+    "frameCount": 6,
+    "w": 2,
+    "h": 2
+  },
+  {
+    "id": "aura_35",
+    "name": "Aura 35",
+    "clientid": 1400,
+    "frameCount": 7,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_36",
+    "name": "Aura 36",
+    "clientid": 1192,
+    "frameCount": 4,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_37",
+    "name": "Aura 37",
+    "clientid": 1193,
+    "frameCount": 3,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_38",
+    "name": "Aura 38",
+    "clientid": 1194,
+    "frameCount": 7,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_39",
+    "name": "Aura 39",
+    "clientid": 1258,
+    "frameCount": 8,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_40",
+    "name": "Aura 40",
+    "clientid": 1338,
+    "frameCount": 5,
+    "w": 8,
+    "h": 8
+  },
+  {
+    "id": "aura_41",
+    "name": "Aura 41",
+    "clientid": 1340,
+    "frameCount": 16,
+    "w": 8,
+    "h": 8
+  },
+  {
+    "id": "aura_42",
+    "name": "Aura 42",
+    "clientid": 1110,
+    "frameCount": 4,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_43",
+    "name": "Aura 43",
+    "clientid": 997,
+    "frameCount": 8,
+    "w": 6,
+    "h": 6
+  },
+  {
+    "id": "aura_44",
+    "name": "Aura 44",
+    "clientid": 1018,
+    "frameCount": 3,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_45",
+    "name": "Aura 45",
+    "clientid": 1056,
+    "frameCount": 8,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_46",
+    "name": "Aura 46",
+    "clientid": 970,
+    "frameCount": 6,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_47",
+    "name": "Aura 47",
+    "clientid": 491,
+    "frameCount": 10,
+    "w": 2,
+    "h": 2
+  },
+  {
+    "id": "aura_48",
+    "name": "Aura 48",
+    "clientid": 846,
+    "frameCount": 8,
+    "w": 2,
+    "h": 2
+  },
+  {
+    "id": "aura_49",
+    "name": "Aura 49",
+    "clientid": 1706,
+    "frameCount": 9,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_50",
+    "name": "Aura 50",
+    "clientid": 1707,
+    "frameCount": 8,
+    "w": 1,
+    "h": 1
+  },
+  {
+    "id": "aura_51",
+    "name": "Aura 51",
+    "clientid": 1708,
+    "frameCount": 17,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_52",
+    "name": "Aura 52",
+    "clientid": 1714,
+    "frameCount": 12,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_53",
+    "name": "Aura 53",
+    "clientid": 1715,
+    "frameCount": 12,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_54",
+    "name": "Aura 54",
+    "clientid": 1753,
+    "frameCount": 4,
+    "w": 2,
+    "h": 2
+  },
+  {
+    "id": "aura_57",
+    "name": "Aura 57",
+    "clientid": 1719,
+    "frameCount": 12,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_60",
+    "name": "Aura 60",
+    "clientid": 1722,
+    "frameCount": 10,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_61",
+    "name": "Aura 61",
+    "clientid": 1723,
+    "frameCount": 11,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_62",
+    "name": "Aura 62",
+    "clientid": 1724,
+    "frameCount": 11,
+    "w": 3,
+    "h": 3
+  },
+  {
+    "id": "aura_63",
+    "name": "Aura 63",
+    "clientid": 1725,
+    "frameCount": 18,
+    "w": 7,
+    "h": 7
+  },
+  {
+    "id": "aura_64",
+    "name": "Aura 64",
+    "clientid": 1726,
+    "frameCount": 9,
+    "w": 7,
+    "h": 7
+  },
+  {
+    "id": "aura_65",
+    "name": "Aura 65",
+    "clientid": 1727,
+    "frameCount": 10,
+    "w": 2,
+    "h": 2
+  },
+  {
+    "id": "aura_66",
+    "name": "Aura 66",
+    "clientid": 1728,
+    "frameCount": 8,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_67",
+    "name": "Aura 67",
+    "clientid": 1729,
+    "frameCount": 8,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_68",
+    "name": "Aura 68",
+    "clientid": 1730,
+    "frameCount": 8,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_69",
+    "name": "Aura 69",
+    "clientid": 1731,
+    "frameCount": 8,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_70",
+    "name": "Aura 70",
+    "clientid": 1732,
+    "frameCount": 8,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_71",
+    "name": "Aura 71",
+    "clientid": 1733,
+    "frameCount": 8,
+    "w": 5,
+    "h": 5
+  },
+  {
+    "id": "aura_72",
+    "name": "Aura 72",
+    "clientid": 1734,
+    "frameCount": 3,
+    "w": 6,
+    "h": 7
+  }
+]
