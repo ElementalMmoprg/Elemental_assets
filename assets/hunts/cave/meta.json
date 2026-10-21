@@ -1,0 +1,1 @@
+{"version":1,"id":"cave","x0":5676,"y0":5198,"w":120,"h":120,"win":[5688,5210,96],"floors":[7,8,9,10,11,12],"walkFloors":[8,9,10,11],"mainZ":9,"atlas":{"pages":["atlas_0.png"],"perRow":64,"perPage":4096,"cell":32,"count":1976}}
