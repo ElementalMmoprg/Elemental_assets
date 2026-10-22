@@ -1,0 +1,1 @@
+{"version":1,"id":"torre_fogo","x0":5816,"y0":4322,"w":80,"h":80,"win":[5828,4334,56,56],"floors":[9,10,11,12,13],"walkFloors":[10,11,12],"mainZ":10,"atlas":{"pages":["atlas_0.png"],"perRow":64,"perPage":4096,"cell":32,"count":559}}

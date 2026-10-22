@@ -1,0 +1,1 @@
+{"version":1,"id":"torre_luz","x0":5632,"y0":5426,"w":80,"h":80,"win":[5644,5438,56,56],"floors":[10,11,12],"walkFloors":[11],"mainZ":11,"atlas":{"pages":["atlas_0.png"],"perRow":64,"perPage":4096,"cell":32,"count":665}}

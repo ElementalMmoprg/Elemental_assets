@@ -1,0 +1,1 @@
+{"version":1,"id":"torre_arena","x0":6099,"y0":4380,"w":71,"h":88,"win":[6111,4392,47,64],"floors":[11,12,13],"walkFloors":[12],"mainZ":12,"atlas":{"pages":["atlas_0.png"],"perRow":64,"perPage":4096,"cell":32,"count":565}}
