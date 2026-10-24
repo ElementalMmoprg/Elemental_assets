@@ -1,1 +1,1 @@
-{"version":1,"id":"blaze","x0":5364,"y0":5286,"w":120,"h":120,"win":[5376,5298,96],"floors":[7,8,9,10,11],"walkFloors":[8,9,10],"mainZ":10,"atlas":{"pages":["atlas_0.png"],"perRow":64,"perPage":4096,"cell":32,"count":2151}}
+{"version":1,"id":"blaze","x0":6452,"y0":4246,"w":120,"h":120,"win":[6464,4258,96],"floors":[1,2,3,4,5,6,7],"walkFloors":[3,4,5,6],"mainZ":6,"atlas":{"pages":["atlas_0.png"],"perRow":64,"perPage":4096,"cell":32,"count":1344}}
